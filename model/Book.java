@@ -49,4 +49,24 @@ public class Book {
         }
         this.totalCopies = totalCopies;
     }
+
+    public void loanOneCopy() {
+        if (loanedCopies >= totalCopies) {
+            throw new IllegalStateException("No copies available to loan.");
+        }
+        loanedCopies++;
+    }
+
+    public void returnOneCopy() {
+        if (loanedCopies <= 0) {
+            throw new IllegalStateException("No copies are currently loaned out.");
+        }
+        loanedCopies--;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("Book{title='%s', genre='%s', total=%d, loaned=%d}",
+                title, genre, totalCopies, loanedCopies);
+    }
 }

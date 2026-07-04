@@ -2,7 +2,6 @@ package model;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Corrections;
 
 public class Member {
     // Static counter to generate unique member IDs
@@ -34,5 +33,18 @@ public class Member {
             throw new IllegalArgumentException("Name cannot be null or empty.");
         }
         this.name = name;
+    }
+
+    public void addBorrowedBook(Book book) {
+        borrowedBooks.add(book);
+    }
+
+    public void removeBorrowedBook(Book book) {
+        borrowedBooks.remove(book);
+    }   
+
+    @Override
+    public String toString() {
+        return String.format("Member{id=%d, name='%s'}", memberId, name);
     }
 }
