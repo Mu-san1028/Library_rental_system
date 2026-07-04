@@ -105,6 +105,10 @@ public class Library {
         return memberLoans;
     }
 
+    public List<Loan> getAllLoans() {
+        return new ArrayList<>(loans);
+    }
+
     public Map<String, Integer> getStats() {
         int totalBooks = 0;
         int loanedBooks = 0;
