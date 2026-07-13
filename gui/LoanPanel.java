@@ -68,8 +68,8 @@ public class LoanPanel extends JPanel {
         bookRow.add(new JLabel("Book:"));
         bookRow.add(bookCombo);
 
-        JButton checkOutButton = new RoundedButton("Check Out");
-        JButton checkInButton = new RoundedButton("Check In");
+        JButton checkOutButton = new RoundedButton("Borrow");
+        JButton checkInButton = new RoundedButton("Return");
         checkOutButton.addActionListener(e -> onCheckOut());
         checkInButton.addActionListener(e -> onCheckIn());
 
@@ -185,14 +185,14 @@ public class LoanPanel extends JPanel {
             library.checkOut(member, book);
             refresh();
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, ex.getMessage(), "Cannot check out", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "Cannot borrow", JOptionPane.ERROR_MESSAGE);
         }
     }
 
     private void onCheckIn() {
         int row = table.getSelectedRow();
         if (row < 0) {
-            JOptionPane.showMessageDialog(this, "Please select a loan to check in.", "No selection", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Please select a loan to return.", "No selection", JOptionPane.WARNING_MESSAGE);
             return;
         }
         Loan loan = tableModel.getLoanAt(row);
@@ -200,7 +200,7 @@ public class LoanPanel extends JPanel {
             library.checkIn(loan.getMember(), loan.getBook());
             refresh();
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, ex.getMessage(), "Cannot check in", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "Cannot return", JOptionPane.ERROR_MESSAGE);
         }
     }
 

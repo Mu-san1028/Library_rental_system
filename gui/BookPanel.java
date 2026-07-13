@@ -1,5 +1,6 @@
 package gui;
 
+import gui.components.PlaceholderTextField;
 import gui.components.RoundedButton;
 import gui.components.StyledTable;
 import library.Library;
@@ -18,7 +19,7 @@ public class BookPanel extends JPanel {
     private final Library library;
     private final BookTableModel tableModel;
     private final StyledTable table;
-    private final JTextField searchField;
+    private final PlaceholderTextField searchField;
 
     public BookPanel(Library library) {
         this.library = library;
@@ -31,7 +32,7 @@ public class BookPanel extends JPanel {
         title.setFont(Theme.FONT_HEADING);
         title.setForeground(Theme.TEXT_PRIMARY);
 
-        searchField = new JTextField();
+        searchField = new PlaceholderTextField("Search by title or genre...");
         searchField.setFont(Theme.FONT_BODY);
         searchField.getDocument().addDocumentListener(new DocumentListener() {
             @Override public void insertUpdate(DocumentEvent e) { onSearch(); }

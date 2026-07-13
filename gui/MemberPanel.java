@@ -1,5 +1,6 @@
 package gui;
 
+import gui.components.PlaceholderTextField;
 import gui.components.RoundedButton;
 import gui.components.StyledTable;
 import library.Library;
@@ -19,7 +20,7 @@ public class MemberPanel extends JPanel {
     private final Library library;
     private final MemberTableModel tableModel;
     private final StyledTable table;
-    private final JTextField searchField;
+    private final PlaceholderTextField searchField;
 
     public MemberPanel(Library library) {
         this.library = library;
@@ -32,7 +33,7 @@ public class MemberPanel extends JPanel {
         title.setFont(Theme.FONT_HEADING);
         title.setForeground(Theme.TEXT_PRIMARY);
 
-        searchField = new JTextField();
+        searchField = new PlaceholderTextField("Search by name or member ID...");
         searchField.setFont(Theme.FONT_BODY);
         searchField.getDocument().addDocumentListener(new DocumentListener() {
             @Override public void insertUpdate(DocumentEvent e) { onSearch(); }
