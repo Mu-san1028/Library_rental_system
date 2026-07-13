@@ -48,6 +48,10 @@ public class MemberPanel extends JPanel {
 
         tableModel = new MemberTableModel(library.findMembers(""));
         table = new StyledTable(tableModel);
+        table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        table.getColumnModel().getColumn(0).setPreferredWidth(50);   // ID
+        table.getColumnModel().getColumn(1).setPreferredWidth(150);  // Name
+        table.getColumnModel().getColumn(2).setPreferredWidth(400);  // Borrowed Books
         add(new JScrollPane(table), BorderLayout.CENTER);
 
         JButton addButton = new RoundedButton("Add Member");

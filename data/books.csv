@@ -1,11 +1,201 @@
 title,genre,totalCopies
-The Great Gatsby,Fiction,3
-1984,Dystopian,2
-Clean Code,Programming,4
-Sapiens,Nonfiction,2
-Dune,Science Fiction,3
-The Hobbit,Fantasy,2
-A Brief History of Time,Science,2
-Thinking Fast and Slow,Psychology,3
-The Pragmatic Programmer,Programming,3
-Norwegian Wood,Fiction,2
+The Girl with the Dragon Tattoo,Self-Help,2
+The Grapes of Wrath,Fiction,1
+American Psycho,Travel,6
+Clean Code,Fantasy,2
+One Hundred Years of Solitude,Science Fiction,1
+Head First Java,Philosophy,1
+Sharp Objects,Psychology,2
+Into the Wild,History,6
+Blood Meridian,Nonfiction,2
+Divergent,Business,2
+The Maltese Falcon,Sports,5
+Around the World in Eighty Days,Self-Help,4
+Cracking the Coding Interview,Biography,4
+Grokking Algorithms,Adventure,2
+Accelerate,Mystery,1
+The Emperor of All Maladies,Cooking,4
+Lord of the Flies,Poetry,4
+A Game of Thrones,Adventure,4
+Pride and Prejudice,Sports,1
+The Bell Jar,Cooking,6
+Crime and Punishment,Art,1
+The Tipping Point,Fantasy,4
+Thus Spoke Zarathustra,Sports,3
+Wuthering Heights,Mystery,2
+The Maze Runner,Horror,2
+The Odyssey,Business,4
+Man's Search for Meaning,Romance,4
+Their Eyes Were Watching God,Thriller,3
+Great Expectations,Classic,2
+Refactoring,Science Fiction,4
+Farewell My Lovely,Business,1
+Dune,Fantasy,6
+Slaughterhouse Five,Business,1
+The Kite Runner,Science Fiction,2
+The Hobbit,Thriller,4
+Deep Work,Nonfiction,4
+Sapiens,Horror,4
+War and Peace,Fantasy,2
+City of Bones,Drama,1
+Continuous Delivery,Drama,3
+Coraline,Classic,3
+The Innovators Dilemma,Adventure,6
+The Mayor of Casterbridge,Sports,5
+Silent Hill Diaries,Cooking,6
+The Republic,Nonfiction,2
+I Robot,Horror,3
+Notes from a Small Island,Horror,1
+The Handmaid's Tale,Self-Help,6
+Brave New World,Business,1
+Peopleware,Sports,3
+Fight Club,Fantasy,1
+Norwegian Wood,Self-Help,4
+The Alchemist,Psychology,5
+East of Eden,Thriller,1
+Murder on the Orient Express,Psychology,1
+The Fellowship of the Ring,Thriller,1
+The Art of Travel,Programming,1
+Cosmos,Cooking,2
+The Hound of the Baskervilles,Drama,1
+Beyond Good and Evil,Self-Help,2
+The Prince,Self-Help,5
+Zero to One,Fantasy,5
+The Lean Startup,Science Fiction,4
+The Chronicles of Narnia,Cooking,5
+Ender's Game,Self-Help,5
+The Mythical Man Month,Philosophy,3
+The Great Gatsby,Horror,6
+Working Effectively with Legacy Code,Travel,3
+Beloved,Biography,3
+Persuasion,Drama,2
+Of Mice and Men,Cooking,6
+Big Little Lies,Science,4
+North and South,Philosophy,1
+Mindset,Fiction,4
+Code Complete,Programming,5
+Little Women,Mystery,1
+Song of Solomon,Business,2
+The Fault in Our Stars,Psychology,3
+Oliver Twist,Romance,3
+The Sign of Four,Science Fiction,2
+Where the Wild Things Are,Poetry,3
+Blink,Thriller,4
+Life of Pi,Business,6
+The Da Vinci Code,Science,5
+Grit,Art,5
+Atomic Habits,Fiction,6
+Introduction to Algorithms,Business,3
+Jurassic Park,Cooking,1
+Emotional Intelligence,Romance,3
+The Lord of the Rings,Mystery,1
+12 Rules for Life,Sports,5
+Anne of Green Gables,Romance,3
+Sphere,Science,5
+Harry Potter and the Philosophers Stone,Horror,6
+Foundation,Philosophy,2
+Sense and Sensibility,Cooking,6
+Eleanor and Park,History,5
+Love in the Time of Cholera,Nonfiction,3
+Quiet,Fantasy,1
+Design Patterns,Art,4
+Good Omens,History,1
+The Lost World,Fiction,3
+Effective Java,Music,2
+Structure and Interpretation of Computer Programs,Art,3
+The Perks of Being a Wallflower,Thriller,6
+Twenty Thousand Leagues Under the Sea,Classic,5
+The Elegant Universe,Travel,4
+Emma,Business,1
+Prey,Mystery,1
+A Tale of Two Cities,Travel,2
+Wild,Business,1
+Charlotte's Web,Poetry,5
+Freakonomics,Business,2
+Mansfield Park,Adventure,2
+The Return of the King,Fantasy,3
+Meditations,Poetry,1
+The Power of Habit,Poetry,2
+Invisible Man,Cooking,2
+Percy Jackson and the Lightning Thief,Cooking,1
+Domain Driven Design,Poetry,5
+Hyperion,Adventure,5
+The Phoenix Project,Sports,2
+The Silent Patient,Biography,2
+Anna Karenina,Thriller,4
+Flow,Fiction,2
+The Picture of Dorian Gray,Sports,3
+No Country for Old Men,Adventure,6
+Good to Great,Sports,2
+The Graveyard Book,History,2
+The Adventures of Sherlock Holmes,Travel,1
+Moby Dick,Drama,1
+Outliers,Nonfiction,2
+Far from the Madding Crowd,Horror,4
+Snow Crash,Poetry,3
+The Time Machine,Biography,2
+The Clean Coder,Fiction,6
+The Innocents Abroad,Horror,4
+Twilight,Philosophy,3
+Walden,Science Fiction,3
+Catch 22,Poetry,6
+To Kill a Mockingbird,Psychology,4
+Ready Player One,Cooking,5
+American Gods,Philosophy,1
+A Short History of Nearly Everything,Mystery,3
+The Structure of Scientific Revolutions,Thriller,5
+The Sun Also Rises,History,1
+Guns Germs and Steel,Mystery,5
+You Dont Know JS,Adventure,3
+The Lovely Bones,Sports,3
+The Godfather,Adventure,5
+Don Quixote,Psychology,1
+Matilda,Drama,5
+The Girl on the Train,Horror,3
+Never Let Me Go,Fantasy,6
+Mistborn,Adventure,1
+A Study in Scarlet,Psychology,5
+The Catcher in the Rye,Cooking,6
+The Book Thief,Sports,6
+Journey to the Center of the Earth,Cooking,2
+Silent Spring,Poetry,4
+Angels and Demons,Science Fiction,6
+Gone Girl,Philosophy,5
+The Road to Character,Philosophy,6
+Eat Pray Love,Mystery,6
+Animal Farm,Science,5
+Astrophysics for People in a Hurry,Science,6
+David Copperfield,Adventure,3
+On the Road,Drama,6
+Eloquent JavaScript,Science,5
+Fahrenheit 451,Romance,2
+The Martian,Adventure,6
+The Secret Garden,Drama,6
+The Selfish Gene,Sports,2
+The Origin of Species,Programming,5
+The Divine Comedy,Science,4
+The Gene,Business,1
+The BFG,Science,3
+The Hunger Games,Horror,4
+Predictably Irrational,Self-Help,5
+James and the Giant Peach,Art,3
+The Old Man and the Sea,Classic,4
+Middlemarch,Classic,6
+Nudge,Horror,5
+Good Night Moon,Nonfiction,6
+Trainspotting,Thriller,6
+For Whom the Bell Tolls,Science Fiction,3
+1984,Psychology,6
+The Left Hand of Darkness,Art,5
+The War of the Worlds,Philosophy,1
+Site Reliability Engineering,Music,2
+Stardust,Cooking,3
+Java Concurrency in Practice,Biography,2
+The Lion the Witch and the Wardrobe,Romance,1
+A Clockwork Orange,Fantasy,2
+And Then There Were None,Nonfiction,5
+The Color Purple,Music,1
+The Road,Classic,4
+In Patagonia,Art,5
+Paper Towns,Horror,6
+Congo,Travel,4

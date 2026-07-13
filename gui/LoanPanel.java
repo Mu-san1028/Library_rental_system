@@ -10,15 +10,26 @@ import model.Member;
 import javax.swing.*;
 import javax.swing.table.AbstractTableModel;
 import java.awt.*;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.function.Supplier;
 
 public class LoanPanel extends JPanel {
 
     private final Library library;
     private final LoanTableModel tableModel;
     private final StyledTable table;
-    private final JComboBox<Member> memberCombo;
-    private final JComboBox<Book> bookCombo;
+
+    private final JComboBox<String> memberCombo;
+    private final JComboBox<String> bookCombo;
+    private final Map<String, Member> memberLookup = new HashMap<>();
+    private final Map<String, Book> bookLookup = new HashMap<>();
+    private List<String> allMemberLabels = new ArrayList<>();
+    private List<String> allBookLabels = new ArrayList<>();
 
     public LoanPanel(Library library) {
         this.library = library;
@@ -37,50 +48,139 @@ public class LoanPanel extends JPanel {
         add(new JScrollPane(table), BorderLayout.CENTER);
 
         memberCombo = new JComboBox<>();
+        memberCombo.setEditable(true);
+        memberCombo.setPreferredSize(new Dimension(250, 28));
+
         bookCombo = new JComboBox<>();
+        bookCombo.setEditable(true);
+        bookCombo.setPreferredSize(new Dimension(250, 28));
+
+        setupAutoComplete(memberCombo, () -> allMemberLabels);
+        setupAutoComplete(bookCombo, () -> allBookLabels);
+
+        JPanel memberRow = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        memberRow.setOpaque(false);
+        memberRow.add(new JLabel("Member:"));
+        memberRow.add(memberCombo);
+
+        JPanel bookRow = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        bookRow.setOpaque(false);
+        bookRow.add(new JLabel("Book:"));
+        bookRow.add(bookCombo);
 
         JButton checkOutButton = new RoundedButton("Check Out");
         JButton checkInButton = new RoundedButton("Check In");
-
         checkOutButton.addActionListener(e -> onCheckOut());
         checkInButton.addActionListener(e -> onCheckIn());
 
-        JPanel formPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        JPanel buttonRow = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        buttonRow.setOpaque(false);
+        buttonRow.add(checkOutButton);
+        buttonRow.add(checkInButton);
+
+        JPanel formPanel = new JPanel();
         formPanel.setOpaque(false);
-        formPanel.add(new JLabel("Member:"));
-        formPanel.add(memberCombo);
-        formPanel.add(new JLabel("Book:"));
-        formPanel.add(bookCombo);
-        formPanel.add(checkOutButton);
-        formPanel.add(checkInButton);
+        formPanel.setLayout(new BoxLayout(formPanel, BoxLayout.Y_AXIS));
+        formPanel.add(memberRow);
+        formPanel.add(bookRow);
+        formPanel.add(buttonRow);
+
         add(formPanel, BorderLayout.SOUTH);
 
         refresh();
     }
 
+    private void setupAutoComplete(JComboBox<String> comboBox, Supplier<List<String>> source) {
+        JTextField editor = (JTextField) comboBox.getEditor().getEditorComponent();
+        editor.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent e) {
+                int code = e.getKeyCode();
+                if (code == KeyEvent.VK_UP || code == KeyEvent.VK_DOWN
+                        || code == KeyEvent.VK_ENTER || code == KeyEvent.VK_ESCAPE) {
+                    return;
+                }
+                String text = editor.getText();
+                List<String> matches = new ArrayList<>();
+                if (!text.isEmpty()) {
+                    String lower = text.toLowerCase();
+                    for (String label : source.get()) {
+                        if (label.toLowerCase().contains(lower)) matches.add(label);
+                    }
+                }
+                if (matches.isEmpty()) {
+                    comboBox.hidePopup();
+                } else {
+                    comboBox.setModel(new DefaultComboBoxModel<>(matches.toArray(new String[0])));
+                    editor.setText(text);
+                    editor.setCaretPosition(text.length());
+                    comboBox.showPopup();
+                }
+            }
+        });
+    }
+
     public void refresh() {
-        Member selectedMember = (Member) memberCombo.getSelectedItem();
-        Book selectedBook = (Book) bookCombo.getSelectedItem();
-
-        memberCombo.removeAllItems();
+        memberLookup.clear();
+        allMemberLabels = new ArrayList<>();
         for (Member member : library.findMembers("")) {
-            memberCombo.addItem(member);
-        }
-        bookCombo.removeAllItems();
-        for (Book book : library.findBooks("")) {
-            bookCombo.addItem(book);
+            String label = labelFor(member);
+            memberLookup.put(label, member);
+            allMemberLabels.add(label);
         }
 
-        if (selectedMember != null) memberCombo.setSelectedItem(selectedMember);
-        if (selectedBook != null) bookCombo.setSelectedItem(selectedBook);
+        bookLookup.clear();
+        allBookLabels = new ArrayList<>();
+        for (Book book : library.findBooks("")) {
+            String label = labelFor(book);
+            bookLookup.put(label, book);
+            allBookLabels.add(label);
+        }
+
+        memberCombo.setModel(new DefaultComboBoxModel<>(allMemberLabels.toArray(new String[0])));
+        bookCombo.setModel(new DefaultComboBoxModel<>(allBookLabels.toArray(new String[0])));
+        memberCombo.getEditor().setItem("");
+        bookCombo.getEditor().setItem("");
 
         tableModel.setLoans(library.getAllLoans());
     }
 
+    private String labelFor(Member member) {
+        return member.getName() + " (ID " + member.getMemberId() + ")";
+    }
+
+    private String labelFor(Book book) {
+        int available = book.getTotalCopies() - book.getLoanedCopies();
+        return book.getTitle() + " - " + available + "/" + book.getTotalCopies() + " available";
+    }
+
+    private Member resolveMember() {
+        String text = (String) memberCombo.getEditor().getItem();
+        if (text == null || text.isBlank()) return null;
+        Member exact = memberLookup.get(text);
+        if (exact != null) return exact;
+        List<Member> matches = library.findMembers(text);
+        return matches.size() == 1 ? matches.get(0) : null;
+    }
+
+    private Book resolveBook() {
+        String text = (String) bookCombo.getEditor().getItem();
+        if (text == null || text.isBlank()) return null;
+        Book exact = bookLookup.get(text);
+        if (exact != null) return exact;
+        List<Book> matches = library.findBooks(text);
+        return matches.size() == 1 ? matches.get(0) : null;
+    }
+
     private void onCheckOut() {
-        Member member = (Member) memberCombo.getSelectedItem();
-        Book book = (Book) bookCombo.getSelectedItem();
-        if (member == null || book == null) return;
+        Member member = resolveMember();
+        Book book = resolveBook();
+        if (member == null || book == null) {
+            JOptionPane.showMessageDialog(this,
+                    "Please select a suggestion, or type a name/title that matches exactly one entry.",
+                    "Not found", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
         try {
             library.checkOut(member, book);
             refresh();
